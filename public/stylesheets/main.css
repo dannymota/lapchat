@@ -1,0 +1,42 @@
+#lol {
+    width: 100vw;
+    user-select: none;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#lol img {
+    width: 452px;
+    height: 345px;
+    user-select: none;
+}
+* {
+    margin: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+#continue {
+    height: 20vh;
+    width: 50vw;
+    color: white;
+    background-color: #F1671F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 50px;
+    float: left;
+}
+#continue a {
+    color: white;
+    cursor: pointer;
+}
+#continue:hover {
+    background-color: #c04b0c;
+    cursor: pointer;
+}
+a {
+    text-decoration: none;
+}

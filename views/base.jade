@@ -1,0 +1,43 @@
+doctype html
+html
+  head
+    title Lapchat
+    link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+    link(rel="icon", href="/favicon.ico", type="image/x-icon")
+    link(rel="stylesheet", href="/stylesheets/bootstrap.min.css", type="text/css")
+    link(rel="stylesheet", href="/stylesheets/template.css", type="text/css")
+    link(rel="stylesheet", href="/stylesheets/custom.css", type="text/css")
+    link(rel='stylesheet', href='/stylesheets/navbar.css')
+
+    block head
+
+  body
+    div#main-background
+        section.navigation
+          .nav-container
+            .brand
+              a(href='/login')
+                img(src='https://i.imgur.com/Ypp6w2Q.png' id="boy")
+            nav
+              .nav-mobile
+                a#nav-toggle(href='#!')
+                  span
+              ul.nav-list
+                li(style="text-decoration: none;")
+                  a(href='/dashboard') Home
+                li
+                  a(href='/chat') Chat
+                li
+                  a(href='/profile') Profile
+                li
+                  a(href='/logout') Logout
+                if message
+                  li 
+                    a(href='/admin') Admin
+        div.row.chat-container
+          block content
+
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
+    script(src="/javascripts/bootstrap.min.js")
+
+    block bottom

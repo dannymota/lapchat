@@ -1,0 +1,32 @@
+nav {
+    font-family: Helvetica;
+}
+.jumbotron {
+    background-color: #F9D423;
+    margin-top: 100px;
+    text-align: center
+}
+.jumbotron h1 {
+    text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1)
+}
+.jumbotron #login-form input#username-input {
+    font-size: 20px;
+    height: 40px;
+    width: 40%;
+    margin: 20px auto;
+    text-align: center
+}
+.jumbotron #login-form button#set-username {
+    border: none;
+    background-color: #777;
+    color: white;
+    padding: 5px 10px;
+    width: 100px;
+    margin-bottom: 20px
+}
+.jumbotron #login-form button#set-username:hover {
+    background-color: gray
+}
+.jumbotron #login-form button#set-username:active {
+    border-bottom: none;
+    padding-top: 8px

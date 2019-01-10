@@ -1,0 +1,73 @@
+extends base
+
+block head
+
+block content
+	div#tab-container.col-xs-9
+		ul#tab.nav.nav-pills
+			li.span
+				a#add-room(href="#")
+					span.glyphicon.glyphicon-plus
+			li.span
+				a(href="#room-Lobby", data-toggle="tab")
+					span#Lobby-badge.badge.tab-badge
+					| Lobby
+
+	div#chat-panel.col-xs-9.well.tab-content
+		div#more-msgs There are more messages!
+		div#room-Lobby.tab-pane
+			div.chat-entries
+		div#chat-controls.input-group
+			input#message-input.form-control(type="text")(style="border:1px solid grey;")
+			span.input-group-btn
+				button#submit.btn.btn-info(type="button submit")(style="background-color:#F1671F;border:1px solid grey;") SEND
+	div#side-panel.col-xs-2.well
+		div#num-connected-container
+			div#num-connected-Lobby.num-connected
+		div#username-container
+			div#usersList-Lobby.usersList
+		div#username-container
+			div#all-users-list-title Friends:
+				each friend, i in user.friends
+					div(id="user_friend")
+						a(href='#' style="color:#F1671F") #{friend}
+	div#create-room-modal.modal.fade(tabindex="-1", role="dialog", aria-hidden="true" aria-labelledby="create-room-modal-label")
+		div.modal-dialog.modal-sm
+			div.modal-content
+				div.modal-header
+					button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+					h4#create-room-modal-label.modal-title Create a room!
+				div.modal-body
+					input#create-room-modal-input(type="text" placeholder="Private Room Name")
+					div#create-room-modal-invite-user-title Invite Other Users:
+					div#create-room-modal-invite-user-container
+				div.modal-footer
+					button#room-modal-close-button.btn.btn-default(type="button" data-dismiss="modal") Close
+					button#create-room-button.btn.btn-primary(style="color: #333; background-color: #fff; border-color: #ccc;") Create room!
+	div#invitation-modal.modal.fade(tabindex="-1", role="dialog", aria-hidden="true" aria-labelledby="invitation-modal-label")
+		div.modal-dialog.modal-sm
+			div.modal-content
+				div.modal-header
+					button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+					h4#create-room-modal-label.modal-title Invitation
+				div.modal-body
+				div.modal-footer
+					button#invitation-modal-decline-button.btn.btn-default(type="button" data-dismiss="modal")(style="color: #333; background-color: #fff; border-color: #ccc;") Decline
+					button#invitation-modal-accept-button.btn.btn-primary(style="color: #333; background-color: #fff; border-color: #ccc;") Accept
+
+	div#failed-invitation-modal.modal.fade(tabindex="-1", role="dialog", aria-hidden="true" aria-labelledby="failed-invitation-modal-label")
+		div.modal-dialog.modal-sm
+			div.modal-content
+				div.modal-header
+					button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+					h4#failed-invitation-modal-label.modal-title Cannot Invite User!
+				div.modal-body
+				div.modal-footer
+					button#failed-invitation-modal-ok-button.btn.btn-primary(type="button" data-dismiss="modal") OK
+
+block bottom
+	script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.2/socket.io.js")
+	script.
+		var username = "#{username}";
+	script(src="/javascripts/emojify.min.js")
+	script(src="/javascripts/script.js")

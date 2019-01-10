@@ -1,0 +1,177 @@
+head
+  link(rel='stylesheet', href='/stylesheets/prof.css')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+  link(rel='stylesheet', href='/stylesheets/navbar.css')
+  title Lapchat
+  style.
+    .button {
+    border: none;
+    color: white;
+    padding: 20px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: Helvetica;
+    float: left;
+    margin: 5px;
+    }
+    .button1{background-color: #F99515;}
+    .button2{background-color: #F00E0E;}
+    #bada
+    {
+    width:100%;
+    margin:auto;
+    }
+    #user_req a
+    {
+      list-style-type:none;
+      text-decoration:none;
+      color:white;
+    }
+    #user_req
+    {
+      height:100px;
+      width:100px;
+      background-color:#333;
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      float:left;
+    }
+    #user_friend a
+    {
+      list-style-type:none;
+      text-decoration:none;
+      color:white;
+    }
+    #user_friend
+    {
+      height:100px;
+      width:100px;
+      background-color:green;
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      float:left;
+    }
+html
+  body
+    section.navigation
+      .nav-container
+        .brand
+          a(href='/login')
+            img(src='https://i.imgur.com/Ypp6w2Q.png' id='boy' style="margin-top:25%")
+        nav
+          .nav-mobile
+            a#nav-toggle(href='#!')
+              span
+          ul.nav-list
+            li(style="text-decoration: none;")
+              a(href='/dashboard') Home
+            li
+              a(href='/chat') Chat
+            li
+              a(href='/profile') Profile
+            li
+              a(href='/logout') Logout
+            if message
+              li 
+                a(href='/admin') Admin
+    .container
+      .innerwrap
+        section.section1.clearfix
+          div
+            .row.grid.clearfix
+              .col2.first
+                img(src='https://qph.ec.quoracdn.net/main-qimg-3b0b70b336bbae35853994ce0aa25013-c', alt='')
+                h1 !{user.firstname} !{user.lastname}
+                p Welcome to your Lapchat Profile Page, enjoy your stay!
+              .col2.last
+                .grid.clearfix
+                  .col3.first
+                    h1 !{user.friends.length}
+                    span Friends
+                  .col3
+                    h1 !{user.friend_req.length}
+                    span Friend Requests
+                  .col3.last
+                    h1 0
+                    span Score
+            .row.clearfix
+              header
+                ul#menu.row2tab.clearfix.menu
+                  li
+                    a.AboutMe.white(href='#AboutMe', title='About Me') Friend Requests
+                  li
+                    a.FriendList.white(href='#FriendList', title='Friend List') Friend List
+                  li
+                    a.AddFriend.white(href='#AddFriend', title='Add Friend') Add Friends
+                  li
+                    a.Settings.white(href='#Settings', title='Settings') Settings
+        section.section2.clearfix
+          div(style='clear:both')
+          #content
+            #AboutMe.section
+              if user.friend_req.length == 0
+                div(align='center')
+                  p You currently have no friend requests!
+              each friend, i in user.friend_req
+                #recieved-pic
+                  #name(style="width:auto;padding-left:5px;padding-right:5px;")
+                    | #{friend}
+                  form(method='post', action='/acceptreq' name="#{friend}")
+                    #accept
+                      input(type='text', name='username_acc', value='#{friend}' style='display:none;')
+                      button ✓
+                  form(method='post', action='/rejectreq' name="#{friend}")
+                    #reject
+                      input(type='text', name='username_rej', value='#{friend}' style='display:none;')
+                      button X
+            #FriendList.section
+                if user.friends.length == 0
+                  div(align='center')
+                    p You currently have no friends!
+                each friend, i in user.friends
+                  div(id="user_friend")
+                    a(href='#') #{friend}
+            #AddFriend.section
+              div(align='center')
+                form(action='/friendreq' method="post")
+                  br
+                  p(style='color:white')
+                    | Search Username:
+                  input(id="friend" type='text', name='friendusername')
+                  br
+                  #bada
+                    button.button.button1(align='center') Add User
+                  !{friend_err}
+            #Settings.section
+             #centerboy(align='center')
+              a(href='/logout')  
+                button.button.button1 Log Out
+              button.button.button1(onclick="window.location.href='changeusername.html'") Change Username
+              button.button.button1(onclick="window.location.href='changepassword.html'") Change Password
+              button.button.button1(onclick="window.location.href='changeemail.html'") Change Email
+              button.button.button2(onclick="window.location.href='deleteaccount.html'") Delete Account
+            #LogOut.section
+              p the name of this tab should be hella self explanatory
+              button.btn.btn-warning(type='button') Log Out
+  script(type='text/javascript').
+    $(document).ready(function() {
+      $(".section").hide();
+      $("ul#menu li:first").addClass("active").show();
+      $("ul#menu li").click(function() {
+      $("ul#menu li.active").removeClass("active");
+      $(this).addClass("active");
+      $(".section").slideUp();
+      $($('a',this).attr("href")).slideDown('slow');
+      return false;
+    });
+    });
+

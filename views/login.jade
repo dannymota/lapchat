@@ -1,0 +1,70 @@
+doctype html
+html(lang='en')
+    head
+        link(rel='stylesheet', href='/stylesheets/register.css')
+        title Lapchat
+    body
+        #logo
+            a(href='/')
+                img(src='http://i.imgur.com/Ypp6w2Q.png')
+        .login-box
+          .lb-header
+            if message
+              a#login-box-link.active(href='#') Login
+              a#signup-box-link(href='#') Sign Up
+            else
+              a#login-box-link(href='#') Login
+              a#signup-box-link.active(href='#') Sign Up
+          form.email-login(name='register', method='post', action='/login')
+            .u-form-group
+              input(type='text', placeholder='Username' name="username")
+            .u-form-group
+              input(type='password', placeholder='Password' name="password")
+            .u-form-group
+              button Log in
+            .u-form-group
+              !{er}
+          form.email-signup(name='register', method='post', action='/register')
+            .u-form-group
+              input(type='text', placeholder='First Name' name="firstname")
+            .u-form-group
+              input(type='text', placeholder='Last Name' name="lastname")
+            .u-form-group
+              input(type='text', placeholder='Username' name="username")
+            .u-form-group
+              input(type='email', placeholder='Email' name="email")
+            .u-form-group
+              input(type='password', placeholder='Password' name="password")
+            .u-form-group
+              button Sign Up
+            .u-form-group
+              !{erd}
+    script(src="/javascripts/jquery-3.2.1.min.js")
+    script.
+        test = #{message};
+        if(test){
+                    $(".email-signup").hide();
+            $(".login-box").css("height", 260);
+
+        }
+        else
+        {
+            $(".email-login").hide();
+            $(".login-box").css("height", 420);
+
+        }
+        $("#signup-box-link").click(function(){
+          $(".login-box").css("height", 440);
+          $(".email-login").hide();
+          $(".email-signup").fadeIn(100);
+          $("#login-box-link").removeClass("active");
+          $("#signup-box-link").addClass("active");
+        });
+        $("#login-box-link").click(function(){
+          $(".login-box").css("height", 260);
+          $(".email-login").fadeIn(100);;
+          $(".email-signup").hide();
+          $("#login-box-link").addClass("active");
+          $("#signup-box-link").removeClass("active");
+
+        });
