@@ -1,10 +1,10 @@
 # LapChat
-![Demo of LapChat](demo.gif?style=centerme)
+![Demo of LapChat](demo.gif)
 
-##Install
+## Overview
     
     $ npm install
     
-##Running
+## Running
     
     $ node app.js
