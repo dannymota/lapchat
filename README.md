@@ -1,2 +1,2 @@
-# lapchat
-Snapchat remake for laptops
+# LapChat
+![](demo.gif)
