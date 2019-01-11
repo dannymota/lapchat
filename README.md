@@ -1,4 +1,4 @@
-# LapChat
+# Lapchat
 ![Demo of LapChat](demo.gif)
 
 ## Overview
